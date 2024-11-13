@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEJr+5v7pQd02J3k4I45lYF0p50f5j5PztpxKb7hA+qkZXy2LQK7Fov7/6dXz" crossorigin="anonymous">
+    <style>
+        /* Overall Body Styling */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Main Container Styling */
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        /* Add Task Button */
+        .btn-add-task {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-add-task:hover {
+            background-color: #218838;
+        }
+
+        /* Task List Styling */
+        .tasks-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-card {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .task-card:last-child {
+            border-bottom: none;
+        }
+
+        .task-info {
+            margin-bottom: 10px;
+        }
+
+        .task-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 5px;
+        }
+
+        .task-desc {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+
+        /* Task Buttons Styling */
+        .task-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .task-buttons .btn {
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0;
+        }
+
+        .task-buttons .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #343a40;
+        }
+
+        .task-buttons .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: #ffffff;
+        }
+
+        .task-buttons .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #ffffff;
+        }
+
+        .no-tasks {
+            text-align: center;
+            font-size: 1rem;
+            color: #6c757d;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Personal Task Manager</h1>
+    </header>
+
+    <div class="container">
+        <!-- "Add New Task" Button -->
+        <a href="{{ url_for('add') }}" class="btn btn-add-task">Add New Task</a>
+
+        <!-- Tasks Section -->
+        <div class="tasks-container">
+            {% if tasks %}
+                {% for task in tasks %}
+                <div class="task-card">
+                    <div class="task-info">
+                        <p class="task-title">{{ task.title }}</p>
+                        <p class="task-desc">{{ task.description }}</p>
+                        <p>Due: {{ task.due_date }} | Priority: {{ task.priority }} | Completed: {{ task.completed }}</p>
+                    </div>
+                    <div class="task-buttons">
+                        <a href="{{ url_for('update', task_id=task.id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ url_for('complete', task_id=task.id) }}" class="btn btn-success">Complete</a>
+                        <a href="{{ url_for('delete', task_id=task.id) }}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p class="no-tasks">No tasks found. Click "Add New Task" to get started!</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
