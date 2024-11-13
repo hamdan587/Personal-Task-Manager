@@ -10,7 +10,7 @@ A sleek and efficient **Flask** web application for managing your tasks effortle
 - 📝 **Add, Edit, Complete, and Delete Tasks**: Manage all your tasks with essential CRUD operations.
 - 🎯 **Priority Levels**: Set priority levels to categorize tasks effectively.
 - 🌐 **Clean and Simple UI**: A responsive interface for easy navigation and task viewing.
-- 💾 **Persistent Data**: Uses a JSON file for storage (MongoDB support coming soon!).
+- 💾 **Persistent Data**: Uses a JSON file for storage.
 
 ---
 
@@ -35,7 +35,7 @@ python app.py
 ```
 
 4️⃣ **Access the app in your browser:**
-   - Go to [http://127.0.0.1:5000](http://127.0.0.1:5000)
+   - Go to [http://127.0.0.1:5000](http://127.0.0.1:5000)(#)
 
 ---
 
@@ -49,7 +49,7 @@ python app.py
 
 ## 📂 JSON Data Storage
 
-All tasks are stored in a `tasks.json` file within the project. This file serves as the primary data source until future MongoDB integration.
+All tasks are stored in a `tasks.json` file within the project.
 
 ---
 
